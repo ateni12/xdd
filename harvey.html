@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider Fix</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body{
+        color:#F2F2F2;
+        background-color: #979485;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 95%;
+      max-width: 1400px;
+      height: 75vh;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      height: 100%;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      position: relative;
+    }
+    #a{
+    width: 1400px;
+}
+#c{
+    width: 1400px;
+}
+#b{
+    width: 1400px;
+}
+    .slide img {
+
+
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7) contrast(1.1);
+
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7) contrast(1.1);
+    }
+
+    .slide h1 {
+      position: absolute;
+      bottom: 20px;
+      left: 30px;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      padding: 12px 18px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(161, 46, 20, 0.6);
+    }
+
+    .prev { left: 15px; }
+    .next { right: 15px; }
+    .contenedor-principal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+        margin: 2rem auto;
+        max-width: 1200px;
+      }
+      .contenedor-principal img{
+        width: 550px;
+        border-radius: 10px;
+        border: 9px solid #3e2221;
+       
+      }
+      .contenedor-principal img:hover{
+        transform: scale(1.02);
+      }
+      
+      .contenido {
+        flex: 1 1 300px;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        position: relative;
+
+      }
+      .estrella {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at center, #fff, #ccc);
+  border-radius: 50%;
+  animation: flotar 3s ease-in-out infinite;
+  box-shadow: 0 0 8px #fff;
+}
+
+@keyframes flotar {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-10px); opacity: 0.8; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+      .destacado {
+        width: 450px;
+        background: #b9b6ac;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(120, 68, 68, 0.15);
+        color: #373e43;
+        font-family: 'Segoe UI', sans-serif;
+
+        margin: auto;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+      
+      .destacado:hover {
+        transform: scale(1.02);
+      }
+      
+      .destacado h3 {
+        margin-bottom: 0.5rem;
+        color: #454545;
+        font-size: 1.4rem;
+        transition: 0.3s ease;
+        font-family: 'Jolly Lodger', cursive;
+        font-size: 40px;
+      }
+      
+      .destacado h3:hover {
+        font-size: 50px;
+        color: #673631;
+        transform: scale(1.02);
+
+      }
+      .destacado p:hover{
+        color: #35393f;
+        transform:scale(1.02)
+      }
+      p{
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 20px;
+      }
+      h3{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      }
+      #lol{
+        font-family: 'Courier New', Courier, monospace;
+        color: #673631;
+      }
+      #nuv, #aa, #j{
+        color: #afb1c2;
+      }
+      .carta-final {
+  padding: 3rem 1rem;
+  background-color: #343d53;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carta-contenedor {
+  background-color: #b8b4a1;
+  padding: 2.5rem;
+  max-width: 800px;
+  color: #2d2f39;
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(66, 68, 75, 0.6);
+  border: 2px solid #4b5d67;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.carta-contenedor:hover {
+  transform: scale(1.01);
+}
+
+.carta-contenedor h2 {
+  font-family: 'Jolly Lodger', cursive;
+  font-size: 2.5rem;
+  color: #333840;
+  text-align: center;
+  margin-bottom: 1.5rem;
+
+
+}
+
+
+
+.auriculares {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 30px;
+  height: 30px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/4/4e/Headphones_font_awesome.svg') no-repeat center/contain;
+  animation: latido 1.2s infinite ease-in-out;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+
+
+  </style>
+</head>
+<body>
+
+<div class="slider-container">
+  <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+
+  <div class="slides" id="slides">
+    <div class="slide">
+      <img src="914 sin título_20250723114114.png" alt="Sonic 1" id="a">
+      <h1 id="nuv">Q NUV</h1>
+    </div>
+    <div class="slide">
+      <img src="914 sin título_20250723114114.png" alt="Sonic 2" id="b">
+      <h1 id="aa">STOP THE WORLD CAUSE I WANNA GET OFF WITH U</h1>
+    </div>
+    <div class="slide">
+      <img src="909 sin título_20250723105326.png" alt="Sonic 3" id="c">
+      <h1 id="j">HARVEY</h1>
+    </div>
+  </div>
+
+  <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+</div>
+<audio id="audio0" src="harvey __ her's (sub. español) - hanahaki j.mp3"></audio>
+<audio id="audio1" src="Arctic Monkeys - Stop The World I Wanna Get Off With You (Official Audio) - Official Arctic Monkeys.mp3"></audio>
+<audio id="audio2" src="harvey __ her's (sub. español) - hanahaki j..mp3"></audio>
+<section id="todo" class="seccion">
+    <div class="contenedor-principal">
+        <div class="contenido">
+          
+          <br>
+          <img src="Screenshot_2025-07-23-16-29-36-890_com.google.android.apps.photos~2.jpg" id="jinx" alt="imagen cool" class="animada">
+          <br>
+        </div>
+        <article class="destacado">
+            <h3 id="lol">HOLII</h3>
+            <p>Buenoo JAKSKJAJK es la primera vez que hago algo así de esta manera, solo una vez hice una página para mi papá, pero realmente no sé mucho qué decir, puess... hppy month! primero que nada :D, ya que ha sido un mes muy bonito para mi, algo que tampoco me ví venir del todo como ya te expliqué, pero no quita lo bonito que fue este mes, aunque de manera a distancia (fkk me siento como esos virtualitos JSAKSJA) realmente es bonito, tipo, despertar con mensajes bonitos, contar pura wbda y saber que no me vas a juzgar, fkk y algo... ALGO QUE M RE ENCANTA, es recibir algun mensaje de voz tuyo, el hecho de escuchar tu voz de nuevo, escucharte hablar de dinosaurios o contarme cosas (cosa que no sucede muy seguido)para es bonito en verdad, LUEGO EN UNO QUE OTRO ESCUCHARTE NERVIOSO ES FKKK AJDSKDKJAS TE QUIERO MUCHOOOO</p>
+              </article>
+              <div class="auriculares"></div>
+    </div>
+    <section class="carta-final">
+      <div class="carta-contenedor">
+
+        <p>
+          Honestamente a este punto las palabras no me alcanzan para describir cada una de las cosas que siento contigo. Me puse a pensar y lo que siento es más que una simple atracción o un enamoramiento de esos como los que describen "adolescentes", es mucho más que eso como ya te lo he dicho antes... una conexión y una sensación de paz.  
+          <br><br>
+          Si tuviera que describir cómo es sentirse cuando estoy contigo, es como una risa genuina y un atardecer donde el tiempo no es testigo, la paz se ilumina.  
+          Eres cada canción de amor, cada palabra en mi mente, cada verso en mi corazón, la sensación de nervios y a la vez tanta seguridad.
+          <br><br>
+          Sentirme tan nerviosa por tu presencia pero tan segura al mismo tiempo, teniendo la certeza de que puedo mostrarte cualquier faceta, porque claro está que conoces casi cada una de ellas.
+          <br><br>
+          También por mi parte... perdón si tal vez no he sido la mejor persona como para querer. No diré lo que dicen otros "estoy aprendiendo a quererte" porque desde un inicio yo te quiero. Solo que a veces no sé cómo expresarlo o cómo regresar y corresponder a ese afecto.
+          <br><br>
+          Pero realmente quiero que sepas que más que enamorada de ti... te admiro.  
+          Quiero verte crecer como persona, quiero verte bien, feliz. Me gusta cada detalle de ti. Me gusta cada segundo que convivo contigo. 
+          Me haces muy feliz, sentir esa sensación como fkk de "suspiro" cada vez que escucho alguna cancion bonita, cada vez que recuerdo algún detalle acerca de ti.
+        </p>
+      </div>
+    </section>
+    
+<script>
+  let currentSlide = 0;
+  const slides = document.getElementById("slides");
+  const totalSlides = slides.children.length;
+
+  slides.style.width = `${totalSlides * 100}%`;
+
+  window.onload = () => animateText(currentSlide);
+
+  function changeSlide(direction) {
+    const texts = document.querySelectorAll('.slide h1');
+    texts.forEach(t => gsap.set(t, { opacity: 0, y: 40 }));
+
+    currentSlide += direction;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    setTimeout(() => animateText(currentSlide), 300);
+  }
+
+  function animateText(index) {
+    const currentText = slides.children[index].querySelector('h1');
+    gsap.to(currentText, { opacity: 1, y: 0, duration: 0.6 });
+  }
+
+const audios = [
+  document.getElementById("audio0"),
+  document.getElementById("audio1"),
+  document.getElementById("audio2")
+];
+
+
+slides.style.width = `${totalSlides * 100}%`;
+
+window.onload = () => {
+  animateText(currentSlide);
+  playAudio(currentSlide);
+};
+
+function changeSlide(direction) {
+  const texts = document.querySelectorAll('.slide h1');
+  texts.forEach(t => gsap.set(t, { opacity: 0, y: 40 }));
+
+
+  audios[currentSlide].pause();
+  audios[currentSlide].currentTime = 0;
+
+  currentSlide += direction;
+  if (currentSlide < 0) currentSlide = totalSlides - 1;
+  if (currentSlide >= totalSlides) currentSlide = 0;
+
+  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
+  setTimeout(() => {
+    animateText(currentSlide);
+    playAudio(currentSlide);
+  }, 300);
+}
+
+function animateText(index) {
+  const currentText = slides.children[index].querySelector('h1');
+  gsap.to(currentText, { opacity: 1, y: 0, duration: 0.6 });
+}
+
+function playAudio(index) {
+  audios[index].play();
+}
+</script>
+
+</body>
+</html>
+<footer>
+  
+</footer>
